@@ -1,0 +1,7 @@
+<Context>
+
+	<Resource name="jdbc/Tarcine" auth="Container" type="javax.sql.DataSource" maxActive="15" maxIDle="3" maxWait="5000" 
+	username="sa" password="123456" url="jdbc:sqlserver://localhost:1433//Tarcine"></Resource>
+
+
+</Context>

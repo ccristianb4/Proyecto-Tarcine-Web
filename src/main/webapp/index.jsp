@@ -13,14 +13,14 @@
     <div class="login-box">
       <img src="RecursosWeb/logo.jpg" class="avatar" alt="Avatar Image">
       <h1>Login Tarcine</h1>
-      <form action="TarcinePrincipal.jsp">
+      <form action="Controlador1">
         <!-- USERNAME INPUT -->
         <label for="username">UserName</label>
-        <input type="text" placeholder="Enter Username">
+        <input type="text" placeholder="Enter Username" name="txtUser">
         <!-- PASSWORD INPUT -->
         <label for="password">Password</label>
-        <input type="password" placeholder="Enter Password">
-        <input type="submit" value="Log In">
+        <input type="password" placeholder="Enter Password" name="txtpass">
+        <input type="submit" name="accion" value="Log In">
         <a href="#">Olvidé mi contraseña</a><br>
         <a href="#">no tengo una cuenta</a>
       </form>

@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Tarcine</title>
+<title>Register</title>
 </head>
 <body>
-<h1>bienvenido a Tarcine</h1>
-<p>este software es para reservar o comprar tiquetes de cine <b>esta es la version 5 del login </b></p>
+<h2>hola este es el register</h2>
 </body>
 </html>

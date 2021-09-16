@@ -2,7 +2,7 @@ package com.software.ingenieria.tarcine.controlador;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,21 +36,7 @@ public class Controlador1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.setContentType("text/html;charset=ISO-8859-1");
-		System.out.println("bfuegduigedugwegwdeiugd");
-		String accion = request.getParameter("accion");
-		if(accion.equals("Log In")) {
-			String user = request.getParameter("txtUser");
-			String pass = request.getParameter("txtpass");
-			u.setUserName(user);
-			u.setPassword(pass);
-			r = c.validar(u);
-			if(r == 1) {
-				request.getRequestDispatcher("TarcinePrincipal.jsp").forward(request, response);
-			}else {
-				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
-		}
+		
 	}
 
 	/**
@@ -59,6 +45,23 @@ public class Controlador1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		response.setContentType("text/html;charset=ISO-8859-1");
+		String accion = request.getParameter("accion");
+		if(accion.equals("Log In")) {
+			String user = request.getParameter("txtUser");
+			String pass = request.getParameter("txtpass");
+			//System.out.println(user);
+			//System.out.println(pass);
+			u.setUserName(user);
+			u.setPassword(pass);
+			r = c.validar(u);
+			System.out.println(r);
+			if(r == 1) {
+				request.getRequestDispatcher("TarcinePrincipal.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+		}
 	}
 
 }

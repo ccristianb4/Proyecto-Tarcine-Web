@@ -13,7 +13,7 @@
     <div class="login-box">
       <img src="RecursosWeb/logo.jpg" class="avatar" alt="Avatar Image">
       <h1>Login Tarcine</h1>
-      <form action="Controlador1">
+      <form action="Controlador1" method="post">
         <!-- USERNAME INPUT -->
         <label for="username">UserName</label>
         <input type="text" placeholder="Enter Username" name="txtUser">
@@ -22,7 +22,7 @@
         <input type="password" placeholder="Enter Password" name="txtpass">
         <input type="submit" name="accion" value="Log In">
         <a href="#">Olvidé mi contraseña</a><br>
-        <a href="#">no tengo una cuenta</a>
+        <a href="RegisterTarcine.jsp">no tengo una cuenta</a>
       </form>
     </div>
   </body>

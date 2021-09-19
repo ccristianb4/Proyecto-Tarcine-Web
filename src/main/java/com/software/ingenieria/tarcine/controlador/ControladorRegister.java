@@ -1,8 +1,6 @@
 package com.software.ingenieria.tarcine.controlador;
 
 import java.io.IOException;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,20 +11,19 @@ import com.software.ingeneria.tarcine.modelo.Usuario;
 import com.software.ingeneria.tarcine.modelo.UsuarioCrud;
 
 /**
- * Servlet implementation class Controlador1
+ * Servlet implementation class ControladorRegister
  */
-@WebServlet("/Controlador1")
-public class Controlador1 extends HttpServlet {
+@WebServlet("/ControladorRegister")
+public class ControladorRegister extends HttpServlet {
 	UsuarioCrud c = new UsuarioCrud();
 	Usuario u = new Usuario();
-	int r;
-	//@Resource(name="jdbc/Tarcine")
+	boolean v;
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controlador1() {
+    public ControladorRegister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +33,7 @@ public class Controlador1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,21 +42,17 @@ public class Controlador1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		response.setContentType("text/html;charset=ISO-8859-1");
-		String accion = request.getParameter("accion");
-		if(accion.equals("Log In")) {
-			String user = request.getParameter("txtUser");
-			String pass = request.getParameter("txtpass");
-			//System.out.println(user);
-			//System.out.println(pass);
-			u.setUserName(user);
-			u.setPassword(pass);
-			r = c.validar(u);
-			System.out.println(r);
-			if(r == 1) {
-				request.getRequestDispatcher("TarcinePrincipal.jsp").forward(request, response);
-			}else {
+		String boton = request.getParameter("accionRegister");
+		if (boton.equals("sign in")) {
+			u.setNombre(request.getParameter("txtName"));
+			u.setUserName(request.getParameter("txtUserName"));
+			u.setCorreo(request.getParameter("txtemail"));
+			u.setPassword(request.getParameter("txtpassword"));
+			v = c.agregar(u);
+			if(v) {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("RegisterTarcine.jsp").forward(request, response);
 			}
 		}
 	}

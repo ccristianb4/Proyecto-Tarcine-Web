@@ -18,7 +18,7 @@ public class UsuarioCrud implements Validar{
 			//ps.setString(2, usu.getPassword());
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				if(rs.getString(4).trim().equals(usu.getUserName()) && rs.getString(6).trim().equals(usu.getPassword()) ) {
+				if(rs.getString(3).trim().equals(usu.getUserName()) && rs.getString(5).trim().equals(usu.getPassword()) ) {
 					resultado = 1;
 					break;
 				}
@@ -28,13 +28,60 @@ public class UsuarioCrud implements Validar{
 			con.close();
 			ps.close();
 			rs.close();
-			if(resultado == 1) {
+		if(resultado == 1) {
 				return 1;
 			}else {
 				return 0;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;
 		}
+	}
+	public boolean ValidarID(int id) {
+		boolean existe = false;
+		String sql = "SELECT * FROM Registro_usuario WHERE ID=?;";
+		try {
+			con = base.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				existe = true;
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			existe = true;
+		}
+		return existe;
+	}
+	
+	@Override
+	public boolean agregar(Usuario usu) {
+		boolean registrado = false;
+		String sql = "INSERT INTO Registro_usuario (ID,Nombre,Username,Correo,Pasword) VALUES(?,?,?,?,?)";
+		int iden = usu.getiD();
+		while(ValidarID(iden)) {
+			iden = usu.getiD();
+		}
+		try {
+			con = base.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, iden);
+			ps.setString(2, usu.getNombre());
+			ps.setString(3, usu.getUserName());
+			ps.setString(4, usu.getCorreo());
+			ps.setString(5, usu.getPassword());
+			int rowInsert = ps.executeUpdate();
+			con.close();
+			ps.close();
+			rs.close();
+			registrado = true;
+			
+		} catch (Exception e) {
+			registrado = false;
+		}
+		return registrado;
 	}
 }
